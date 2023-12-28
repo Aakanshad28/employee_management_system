@@ -63,7 +63,55 @@ public class EmployeeDao {
 		}
 		return null;
 	}
-	
-	
+	public List<Employee> saveAll(List<Employee> list) {
+    	return repo.saveAll(list);
+		
+	}
+
+	public Employee updatePhone(int id, long phone) {
+		Optional<Employee> optional=repo.findById(id);
+		if (optional.isPresent()) {
+			Employee employee=optional.get();
+			employee.setPhone(phone);
+			return repo.save(employee);
+		}
+		return null;
+	}
+
+	public Employee updateEmail(int id, String email) {
+		Optional<Employee> optional=repo.findById(id);
+		if (optional.isPresent()) {
+			Employee employee=optional.get();
+			employee.setEmail(email);
+			return repo.save(employee);
+		}
+		return null;
+	}
+
+	public Employee updateSalary(int id, double salary) {
+		Optional<Employee> optional=repo.findById(id);
+		if (optional.isPresent()) {
+			Employee employee=optional.get();
+			employee.setSalary(salary);
+			return repo.save(employee);
+		}
+		return null;
+	}
+    //find by phone		
+	public Employee findByPhone(long phone) {
+		return repo.findEmployeeByPhone(phone);
+	}
+    //get by email
+	public Employee findByEmail(String email) {
+		return repo.getEmployeeByEmail(email);
+	}
+
+	public List<Employee> findByAddress(String address) {
+		return repo.empByAddress(address);
+	}
+
+	public List<Employee> findByName(String name) {
+		return repo.empByName(name);
+	}
 
 }
